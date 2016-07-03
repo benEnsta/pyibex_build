@@ -4,7 +4,7 @@ addons:
   ssh_known_hosts:
     - bdesroch.homenet.org
     - 176.189.91.235
-    
+
   apt:
     sources:
     - deadsnakes
@@ -78,7 +78,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -e "ssh -p 2229" -r --delete-after --quiet $TRAVIS_BUILD_DIR/$wheel_file git@bdesroch.homenet.org:~/dist
-  script: rsync -e "ssh -p 2229" -r --delete-after --quiet $TRAVIS_BUILD_DIR/$deb_file git@bdesroch.homenet.org:~/dist
+  script: rsync -e "ssh -p 2229 -o StrictHostKeyChecking=no" -r --delete-after --quiet $TRAVIS_BUILD_DIR/$wheel_file git@bdesroch.homenet.org:~/dist
+  script: rsync -e "ssh -p 2229 -o StrictHostKeyChecking=no" -r --delete-after --quiet $TRAVIS_BUILD_DIR/$deb_file git@bdesroch.homenet.org:~/dist
   on:
     branch: master
