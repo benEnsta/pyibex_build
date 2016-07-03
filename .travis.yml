@@ -30,9 +30,8 @@ matrix:
     compiler: gcc-4.8
 
 before_install:
-- git clone https://github.com/benEnsta/pyIbex.git
+- git clone -b update_pybind11 https://github.com/benEnsta/pyIbex.git
 - mv pyIbex/* .
-- git checkout update_pybind11
 - openssl aes-256-cbc -K $encrypted_4be9b5ac2573_key -iv $encrypted_4be9b5ac2573_iv
   -in deploy_rsa.enc -out pyIbex/deploy_rsa -d
 
