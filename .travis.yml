@@ -37,7 +37,7 @@ before_install:
 - cd ..
 - mv pyIbex/* .
 - openssl aes-256-cbc -K $encrypted_4be9b5ac2573_key -iv $encrypted_4be9b5ac2573_iv
-  -in deploy_rsa.enc -out pyIbex/deploy_rsa -d
+  -in deploy_rsa.enc -out deploy_rsa -d
 
 
 - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install python3; fi
