@@ -30,6 +30,9 @@ matrix:
     compiler: gcc-4.8
 
 before_install:
+- git clone https://github.com/benEnsta/pyIbex.git
+- cd pyIbex
+- git checkout update_pybind11
 - openssl aes-256-cbc -K $encrypted_4be9b5ac2573_key -iv $encrypted_4be9b5ac2573_iv
   -in deploy_rsa.enc -out deploy_rsa -d
 - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install python3; fi
@@ -39,9 +42,6 @@ install:
 - bash ./travis_script/build_Ibex4pyIbex.sh
 - export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/ibex
 script:
-- git clone https://github.com/benEnsta/pyIbex.git
-- cd pyIbex
-- git checkout update_pybind11
 - mkdir build
 - cd build
 - export version=$(python -c "import sys; print(sys.version[:3])")
