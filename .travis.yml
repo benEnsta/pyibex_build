@@ -1,7 +1,10 @@
 language: c++
 sudo: false
 addons:
-  ssh_known_hosts: bdesroch.homenet.org
+  ssh_known_hosts:
+    - bdesroch.homenet.org
+    - 176.189.91.235
+    
   apt:
     sources:
     - deadsnakes
