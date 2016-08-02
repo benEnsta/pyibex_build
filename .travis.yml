@@ -1,84 +1,47 @@
-language: c++
+# The language in this case has no bearing - we are going to be making use of conda.
 sudo: false
+language: cpp
+# python:
+  # We don't actually use the Travis Python, but this keeps it organized.
+  # - "2.6"
+  # - "2.7"
+  # - "3.3"
+  # - "3.4"
+  # - "3.5"
 addons:
-  ssh_known_hosts:
-    - bdesroch.homenet.org
-    - 176.189.91.235
-
   apt:
     sources:
-    - deadsnakes
     - ubuntu-toolchain-r-test
-    - chef-current-precise
+    - deadsnakes
     packages:
-    - cmake
-    - time
-    - pkg-config
     - g++-4.8
-cache:
-  directories:
-  - "$HOME/ibex"
-  - "$HOME/Downloads"
+
+env:
+  global:
+    # add ANACONDA_TOKEN
+    secure: kLlW/eFYXyFuxKew0fcE22A2+iaFtBI29wYDCPcAc+xHz8zB2XptVzEP2atH5913nUwKOBCKy7LJM5xcYOi1512HSqUG+DOWZXeQf8fqlVMmrgGa3d5Ck+RirY/kt+jpUBIEH6johlnvphPi3v0iWshZahfXysD+dcikpbVCqc3RU7xHV5dCTGZSG/0UE0rZXh2pV5sfs0JRqpNvGWBQRUu0wv32C6m0PLXeqBK/PTQAB9qzLOKkMWPlx6gaTC8pYtGCq8UWhWC2wMXljgDRdLh9MnTzt9BWIPTYV0xZHkf+Qq8i+m84vM7/Oiq4ZtBuKa+oDf/Wz5uHa3cwiyyph5n2CRTKaAxFJ8NrP9/WEeyGrzlXTpYL8bXzS8T4FTdqnGFf9XGOTcfg85r8LM3bJ/U2MkolRiUgFJF1VnnsagxY9ioyhsGRRkxHN0hbkPJ5IRcCBK5vmo+Koi0/uJIBD4ZcjI/w0qhAYuph6wNlJuOo2sYVM6CdY0oI1dv9emGXD5r+AUyf1RLCq8WGklauRJMVAlxyfxn7VWg/18lD5A8cNYrf4XelDr0l0n0ii5VeurUHewcn93opkES1jvgBLgZ+Inmcm3rEBD/FygLA8vhHSkkOC2SACByFlcYagoEOeblx9O1PKN3WRZUSpDF9tqyf8KKOz/SqS5HXQTWLPLQ=
+    # add BINSTART_TOKEN
+    secure: Rd93XgN6Kt6lHnOAYolTJbyZuoaUb3WPzRItloY5gM67gFXiabJNQuJovYren6EGuueDAFtYaAvQk10fA3yV1k1BfPkhHToEnwzvG55O+uLf5GQskbMw6ODoWIdVF+MdSMxCIjBfI6GCIkCImAu0safAqrw9i6wxpsiqWu4QyK1W/8xbC6tJuVUmky8MrWlaJ+eQ4LGmYuLdINYaT/qkw+4Ip6bmfMZWHM/Jcy5uQfHzyNX75i1Y+IIeztHTBRZ/hwGk4+3aUcNf3EZSZ9iOn9trhvXhjrlvw3mW6t+ViIKV9WvExpmVZjusGZCCVSBzVh83kuV3lSW/J0FLayiaHKlBj7xyGnRN77nhTG8MQrRKlXMnl59fslbXQmM+Z7G9QrBZHblpsYcBC7yTbuUIk8LBtovioR/EWIzzykT8lnErMyIFBFEl2TKZmCl7ARVp1gnpd1o16JjdUTLzIJSgahxyDCCW57RRfOvKnWig3cvGYZAvQYQGM4ORXd+i2cMy+8GUJV2arC9ivuaGfIFEqznXSG1CH9WECNhYFmEtm6xpBVsdnx6KlzCdYKt6gwLWMXy3UZx14ocqsgGe600oJLI6XauJSwjZRx3zaddXWQgvulv/qkpGxjjB07CraF1xaA1Nx16sYB64zN99+ypcwnqlUBSxTmdhnnXMn7OSTQg=
+
 matrix:
   include:
-  # - os: osx
-  #   compiler: clang
-  - os: linux
-    language: python
-    python: '3.4'
-    compiler: gcc-4.8
-  - os: linux
-    language: python
-    python: '3.5'
-    compiler: gcc-4.8
+    - os: osx
+      env: ACTION="build-all"
+      compiler: clang
+    - os: linux
+      env: ACTION="create-feedstocks-on-merge"
+      compiler: gcc-4.8
 
-before_install:
-- git clone -b update_pybind11 https://github.com/benEnsta/pyIbex.git
-- cd pyIbex
-- git submodule init
-- git submodule update
-- cd ..
-- mv pyIbex/* .
-- openssl aes-256-cbc -K $encrypted_4be9b5ac2573_key -iv $encrypted_4be9b5ac2573_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
-
-
-- if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install python3; fi
-- if [ $TRAVIS_OS_NAME == osx ]; then pip install wheel; fi
-- if [ $TRAVIS_OS_NAME == osx ]; then brew install clang-omp; fi
-install:
-- bash ./travis_script/build_Ibex4pyIbex.sh
-- export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/ibex
 script:
-- mkdir build
-- cd build
-- export version=$(python -c "import sys; print(sys.version[:3])")
-- echo $version
-- ls ${HOME}/ibex
-- ls ${HOME}/ibex/lib
-- if [ $TRAVIS_OS_NAME == osx ]; then CC=clang-omp CXX=clang-omp++ cmake -DCMAKE_INSTALL_PREFIX=${HOME}
-  -DIBEX_ROOT=${HOME}/ibex -DPYTHON_VERSION=${version} ../ ; fi
-- if [ $TRAVIS_OS_NAME == linux ]; then cmake -DCMAKE_INSTALL_PREFIX=${HOME} -DIBEX_ROOT=${HOME}/ibex
-  -DPYTHON_VERSION=${version} -DCMAKE_CXX_COMPILER=g++-4.8 ../ ; fi
-- make && make install
-- make test
-- make pip_package
-- export wheel_file=$(ls *.whl)
-- mv $wheel_file $TRAVIS_BUILD_DIR/$wheel_file
-- make package
-- export deb_file=$(ls *.deb)
-- mv $deb_file $TRAVIS_BUILD_DIR/$deb_file
-- ls $TRAVIS_BUILD_DIR
-
-before_deploy:
-- eval "$(ssh-agent -s)"
-- chmod 600 $TRAVIS_BUILD_DIR/deploy_rsa
-- ssh-add $TRAVIS_BUILD_DIR/deploy_rsa
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: rsync -e "ssh -p 2229 -o StrictHostKeyChecking=no" -r $TRAVIS_BUILD_DIR/$wheel_file git@bdesroch.homenet.org:~/dist
-  script: rsync -e "ssh -p 2229 -o StrictHostKeyChecking=no" -r $TRAVIS_BUILD_DIR/$deb_file git@bdesroch.homenet.org:~/dist
-  on:
-    branch: master
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
+  - if [ "$ACTION" = "create-feedstocks-on-merge" ]; then
+      echo "Creating feedstocks from the recipe(s) (this simply lints the recipe if this isn't a merged commit to master).";
+      source ./.CI/create_feedstocks;
+    elif [ "$ACTION" = "build-all" ]; then
+      echo "Building all recipes.";
+      source ./.CI/build_all;
+    fi
+  - conda config --add channels benensta
+  - conda config --add channels anaconda
+  - conda-build-all ./recipes --matrix-condition "numpy >=1.10" "python <3|>=3.4" --inspect-channels benensta --upload-channels benensta
+  # - conda build --token ${ANACONDA_TOKEN} recipes/pyibex --

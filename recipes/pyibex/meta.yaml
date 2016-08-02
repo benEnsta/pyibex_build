@@ -1,0 +1,76 @@
+package:
+  name: pyibex
+  version: "1.5.0a6"
+
+source:
+  fn: pyibex-1.5.0a6.tar.gz
+  # url: https://testpypi.python.org/packages/74/60/6f83993f3c9802b8db8eaac7cb828503cac54aa0bf4412a17a0a929d9147/pyibex-1.5.0a4.tar.gz
+  # url: https://testpypi.python.org/packages/a5/4a/37dec1ab6f9661605adaaa548755b926676e9f2f8b20c54c6e7ae40622de/pyibex-1.5.0a5.tar.gz
+  # url: https://testpypi.python.org/packages/56/9e/b0f314dc3b7601759315f39f149d826164c7052389aa5902c77325d17e65/pyibex-1.5.0a6.tar.gz
+  url: https://testpypi.python.org/packages/ec/6f/c5513bc018b397f30e320382a998aee9adb6cdc3cd5ee47894052fdcc3fa/pyibex-1.5.0a7.tar.gz
+  md5: 052cb5efa93e9e725268168d9cb8b9c0
+#  patches:
+   # List any patch files here
+   # - fix.patch
+build:
+  script_env:
+    - CC
+    - CXX
+  number: 0
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - pyibex = pyibex:main
+    #
+    # Would create an entry point called pyibex that calls pyibex.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - ibex-lib
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - pyibex
+    - pyibex.examples
+    - pyibex.geometry
+    - pyibex.polar
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/benEnsta/pyIbex
+  license: GNU Lesser General Public License v3 or later (LGPLv3+)
+  summary: 'PyIbex a python interface of ibexlib '
+
+extra:
+  recipe-maintainers:
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    - BenEnsta
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
