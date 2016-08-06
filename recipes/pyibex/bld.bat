@@ -1,3 +1,4 @@
+"%PYTHON%" setup.py build_ext -v -I "%CONDA_PREFIX%"/include:"%CONDA_PREFIX%"/include/ibex -L "%CONDA_PREFIX%"/lib
 "%PYTHON%" setup.py install
 if errorlevel 1 exit 1
 

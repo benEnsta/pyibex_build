@@ -1,3 +1,4 @@
+os: Visual Studio 2015
 environment:
 
   pwd_conda:
@@ -94,10 +95,12 @@ install:
     - cmd: conda install --yes --quiet conda-build
     - cmd: conda install --yes --quiet anaconda-client
     - cmd: conda config --add channels benensta
+    - cmd: set "VS_MAJOR=15"
+    - cmd: set "VS_YEAR=2015"
 
 
 build_script:
-  - cmd: conda build --token %conda_token% recipes/pyibex --
+  - cmd: conda build --debug --token %conda_token% recipes/pyibex --
   # - cmd: ls recipes
   # - cmd: ls .
   # - cmd: conda install --use-local recipes/ibex-lib

@@ -1,13 +1,5 @@
-# The language in this case has no bearing - we are going to be making use of conda.
 sudo: false
 language: cpp
-# python:
-  # We don't actually use the Travis Python, but this keeps it organized.
-  # - "2.6"
-  # - "2.7"
-  # - "3.3"
-  # - "3.4"
-  # - "3.5"
 addons:
   apt:
     sources:
@@ -15,33 +7,26 @@ addons:
     - deadsnakes
     packages:
     - g++-4.8
-
 env:
   global:
-    # add ANACONDA_TOKEN
-    secure: kLlW/eFYXyFuxKew0fcE22A2+iaFtBI29wYDCPcAc+xHz8zB2XptVzEP2atH5913nUwKOBCKy7LJM5xcYOi1512HSqUG+DOWZXeQf8fqlVMmrgGa3d5Ck+RirY/kt+jpUBIEH6johlnvphPi3v0iWshZahfXysD+dcikpbVCqc3RU7xHV5dCTGZSG/0UE0rZXh2pV5sfs0JRqpNvGWBQRUu0wv32C6m0PLXeqBK/PTQAB9qzLOKkMWPlx6gaTC8pYtGCq8UWhWC2wMXljgDRdLh9MnTzt9BWIPTYV0xZHkf+Qq8i+m84vM7/Oiq4ZtBuKa+oDf/Wz5uHa3cwiyyph5n2CRTKaAxFJ8NrP9/WEeyGrzlXTpYL8bXzS8T4FTdqnGFf9XGOTcfg85r8LM3bJ/U2MkolRiUgFJF1VnnsagxY9ioyhsGRRkxHN0hbkPJ5IRcCBK5vmo+Koi0/uJIBD4ZcjI/w0qhAYuph6wNlJuOo2sYVM6CdY0oI1dv9emGXD5r+AUyf1RLCq8WGklauRJMVAlxyfxn7VWg/18lD5A8cNYrf4XelDr0l0n0ii5VeurUHewcn93opkES1jvgBLgZ+Inmcm3rEBD/FygLA8vhHSkkOC2SACByFlcYagoEOeblx9O1PKN3WRZUSpDF9tqyf8KKOz/SqS5HXQTWLPLQ=
-    # add BINSTART_TOKEN
-    secure: Rd93XgN6Kt6lHnOAYolTJbyZuoaUb3WPzRItloY5gM67gFXiabJNQuJovYren6EGuueDAFtYaAvQk10fA3yV1k1BfPkhHToEnwzvG55O+uLf5GQskbMw6ODoWIdVF+MdSMxCIjBfI6GCIkCImAu0safAqrw9i6wxpsiqWu4QyK1W/8xbC6tJuVUmky8MrWlaJ+eQ4LGmYuLdINYaT/qkw+4Ip6bmfMZWHM/Jcy5uQfHzyNX75i1Y+IIeztHTBRZ/hwGk4+3aUcNf3EZSZ9iOn9trhvXhjrlvw3mW6t+ViIKV9WvExpmVZjusGZCCVSBzVh83kuV3lSW/J0FLayiaHKlBj7xyGnRN77nhTG8MQrRKlXMnl59fslbXQmM+Z7G9QrBZHblpsYcBC7yTbuUIk8LBtovioR/EWIzzykT8lnErMyIFBFEl2TKZmCl7ARVp1gnpd1o16JjdUTLzIJSgahxyDCCW57RRfOvKnWig3cvGYZAvQYQGM4ORXd+i2cMy+8GUJV2arC9ivuaGfIFEqznXSG1CH9WECNhYFmEtm6xpBVsdnx6KlzCdYKt6gwLWMXy3UZx14ocqsgGe600oJLI6XauJSwjZRx3zaddXWQgvulv/qkpGxjjB07CraF1xaA1Nx16sYB64zN99+ypcwnqlUBSxTmdhnnXMn7OSTQg=
-
+  # - secure: kLlW/eFYXyFuxKew0fcE22A2+iaFtBI29wYDCPcAc+xHz8zB2XptVzEP2atH5913nUwKOBCKy7LJM5xcYOi1512HSqUG+DOWZXeQf8fqlVMmrgGa3d5Ck+RirY/kt+jpUBIEH6johlnvphPi3v0iWshZahfXysD+dcikpbVCqc3RU7xHV5dCTGZSG/0UE0rZXh2pV5sfs0JRqpNvGWBQRUu0wv32C6m0PLXeqBK/PTQAB9qzLOKkMWPlx6gaTC8pYtGCq8UWhWC2wMXljgDRdLh9MnTzt9BWIPTYV0xZHkf+Qq8i+m84vM7/Oiq4ZtBuKa+oDf/Wz5uHa3cwiyyph5n2CRTKaAxFJ8NrP9/WEeyGrzlXTpYL8bXzS8T4FTdqnGFf9XGOTcfg85r8LM3bJ/U2MkolRiUgFJF1VnnsagxY9ioyhsGRRkxHN0hbkPJ5IRcCBK5vmo+Koi0/uJIBD4ZcjI/w0qhAYuph6wNlJuOo2sYVM6CdY0oI1dv9emGXD5r+AUyf1RLCq8WGklauRJMVAlxyfxn7VWg/18lD5A8cNYrf4XelDr0l0n0ii5VeurUHewcn93opkES1jvgBLgZ+Inmcm3rEBD/FygLA8vhHSkkOC2SACByFlcYagoEOeblx9O1PKN3WRZUSpDF9tqyf8KKOz/SqS5HXQTWLPLQ=
+  - secure: OlrHCKW0otKKziRcXMC1WogiMrHAgheVwH/UmRYrRHo4Gn0yGOXyvZXmZx5vrrOxOnYz/6zRcv0QsiGPXu5hPea8Fi0O919Ebho+rVLyLeuYDM5KxcZdUjMJ6OlcmxeTbQzrf4m2tOLtsOk+gP2fMKfr1cZ12LUiywnob86k6mwEv8A1tCxPoyz/TW9xU6CCcGPdaRy1I0WR8fP/yV6ro+e2ykbQf60Cg3Vf2vh+GJzOSP4d58/KttBi4D7UFF2oc/CmxEk88RKNnNQHxA1VuVy0s0QAy3T3Wwq/66eSr1mOGhFPjc/uAVelzngIvfZxkN1eOuiU/4rZ+miyCib3g9HljpqhxXrEV5H6Ws+Dr9E0hnUuSo/AA14Qv94D3TgLjC8EqmaDETU60LXzEnl5c5DeHyKBn1yOrP4JqgQAfeJzj7/kc2ket2hdGHuZ5Lv+xZ5hRssyfP2NTf6hMYGOXOq+CGg5eIBqedUXXmEshgbYOZvnMwugzn820ysq/bM2gHLbkS0n+ox39xvqhku+ZUFMPsBm1dXNd+uoVHzGu2c+6axrVvQ0ME1q5ytw8yRRzTIQSn2+6xbE/fpB5WxT/17+YK8q236Pus35o0BwK5JcRZicnem1UxOCrCFRRAplR8xguAAQfTtFUBT0QLiv0mZDN/obgOggQpT7p83Yg+s=
 matrix:
   include:
-    - os: osx
-      env: ACTION="build-all"
-      compiler: clang
-    - os: linux
-      env: ACTION="create-feedstocks-on-merge"
-      compiler: gcc-4.8
-
+  - os: osx
+    env: CONDA=3.5
+    compiler: clang
+  - os: linux
+    env: CONDA=3.5
+    compiler: gcc-4.8
 script:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
-  - if [ "$ACTION" = "create-feedstocks-on-merge" ]; then
-      echo "Creating feedstocks from the recipe(s) (this simply lints the recipe if this isn't a merged commit to master).";
-      source ./.CI/create_feedstocks;
-    elif [ "$ACTION" = "build-all" ]; then
-      echo "Building all recipes.";
-      source ./.CI/build_all;
-    fi
-  - conda config --add channels benensta
-  - conda config --add channels anaconda
-  - conda-build-all ./recipes --matrix-condition "numpy >=1.10" "python <3|>=3.4" --inspect-channels benensta --upload-channels benensta
-  # - conda build --token ${ANACONDA_TOKEN} recipes/pyibex --
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then echo "Creating feedstocks from the recipe(s)
+  (this simply lints the recipe if this isn't a merged commit to master)."; source
+  ./.CI/create_feedstocks; elif [ "$TRAVIS_OS_NAME" = "osx" ]; then echo "Building
+  all recipes."; source ./.CI/build_all; fi
+- conda create --yes -q -n test-environment python=$CONDA
+- source activate test-environment
+- conda config --add channels benensta
+- conda config --add channels anaconda
+- conda build --token ${ANACONDA_TOKEN} recipes/pyibex --
