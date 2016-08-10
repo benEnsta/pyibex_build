@@ -29,4 +29,4 @@ script:
 - source activate test-environment
 - conda config --add channels benensta
 - conda config --add channels anaconda
-- conda build --token ${ANACONDA_TOKEN} recipes/pyibex --
+- conda build --debug --token ${ANACONDA_TOKEN} recipes/pyibex --
