@@ -7,9 +7,9 @@ environment:
   # global:
     # DISTUTILS_USE_SDK: 1
     # MSSdk: 1
-
   conda_token:
     secure: JHoNjSJ/qEnmDBxTUrryRM/hu5ajQSboycQysdUjVnX8ta/vgvc8ihEnn2zmhPWy
+
 
   matrix:
   # - CONDA: 27
@@ -30,10 +30,12 @@ install:
       conda config --add channels conda-forge
       conda update -q conda
       conda install -q conda-build
+      conda install -q anaconda-client
       conda config --add channels benensta
+
     }
 build_script:
 - ps: |
     if ($env:CONDA) {
-      conda build --debug --token %conda_token% recipes/pyibex --
+      conda build --debug --token "$env:conda_token" recipes/pyibex --
     }

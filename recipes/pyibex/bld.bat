@@ -4,9 +4,14 @@ SET MSSdk=1
 "%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Setup\WindowsSdkVer.exe" -q -version:15
 "%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Bin\SetEnv.cmd" /x64 /MT /release
 
-"%PYTHON%" setup.py build_ext -I "%CONDA_PREFIX%"\include\ibex -L "%CONDA_PREFIX%"\lib -DWIN32 -D/MT -D/Release
+mkdir build
+cd build
+cmake -G "%CMAKE_GENERATOR%" -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ..
 if errorlevel 1 exit 1
-"%PYTHON%" setup.py install
+
+set MSBuildLogger="C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+cmake --build . --config Release --target install_python -- /v:m /logger:%MSBuildLogger%
+
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.

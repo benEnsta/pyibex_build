@@ -5,8 +5,11 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     - deadsnakes
+    - kubuntu-backports # cmake 2.8.12
+
     packages:
     - g++-4.8
+    - cmake
 env:
   global:
   # - secure: kLlW/eFYXyFuxKew0fcE22A2+iaFtBI29wYDCPcAc+xHz8zB2XptVzEP2atH5913nUwKOBCKy7LJM5xcYOi1512HSqUG+DOWZXeQf8fqlVMmrgGa3d5Ck+RirY/kt+jpUBIEH6johlnvphPi3v0iWshZahfXysD+dcikpbVCqc3RU7xHV5dCTGZSG/0UE0rZXh2pV5sfs0JRqpNvGWBQRUu0wv32C6m0PLXeqBK/PTQAB9qzLOKkMWPlx6gaTC8pYtGCq8UWhWC2wMXljgDRdLh9MnTzt9BWIPTYV0xZHkf+Qq8i+m84vM7/Oiq4ZtBuKa+oDf/Wz5uHa3cwiyyph5n2CRTKaAxFJ8NrP9/WEeyGrzlXTpYL8bXzS8T4FTdqnGFf9XGOTcfg85r8LM3bJ/U2MkolRiUgFJF1VnnsagxY9ioyhsGRRkxHN0hbkPJ5IRcCBK5vmo+Koi0/uJIBD4ZcjI/w0qhAYuph6wNlJuOo2sYVM6CdY0oI1dv9emGXD5r+AUyf1RLCq8WGklauRJMVAlxyfxn7VWg/18lD5A8cNYrf4XelDr0l0n0ii5VeurUHewcn93opkES1jvgBLgZ+Inmcm3rEBD/FygLA8vhHSkkOC2SACByFlcYagoEOeblx9O1PKN3WRZUSpDF9tqyf8KKOz/SqS5HXQTWLPLQ=
@@ -21,10 +24,13 @@ matrix:
     compiler: gcc-4.8
 script:
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
-- if [ "$TRAVIS_OS_NAME" = "linux" ]; then echo "Creating feedstocks from the recipe(s)
-  (this simply lints the recipe if this isn't a merged commit to master)."; source
-  ./.CI/create_feedstocks; elif [ "$TRAVIS_OS_NAME" = "osx" ]; then echo "Building
-  all recipes."; source ./.CI/build_all; fi
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    echo "Creating feedstocks from the recipe(s) (this simply lints the recipe if this isn't a merged commit to master).";
+    source ./.CI/create_feedstocks;
+  elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    echo "Building all recipes.";
+    source ./.CI/build_all;
+  fi
 - conda create --yes -q -n test-environment python=$CONDA
 - source activate test-environment
 - conda config --add channels benensta
