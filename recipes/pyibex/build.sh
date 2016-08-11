@@ -5,9 +5,10 @@ git submodule update
 
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
 
-make
+cmake -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_OSX_DEPLOYMENT_TARGET="10.7" -DCMAKE_CXX_FLAGS="-stdlib=libc++" ..
+
+make VERBOSE=1
 
 make install_python
 

@@ -11,7 +11,6 @@ if errorlevel 1 exit 1
 
 set MSBuildLogger="C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 cmake --build . --config Release --target install_python -- /v:m /logger:%MSBuildLogger%
-
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.

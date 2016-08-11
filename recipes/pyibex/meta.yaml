@@ -18,9 +18,10 @@ source:
    # - fix.patch
 build:
   script_env:
+    - CPP
     - CC
     - CXX
-  number: 2
+  number: 4
 # build:
   # noarch_python: True
   # preserve_egg_dir: True
@@ -42,6 +43,7 @@ requirements:
     - python
     - setuptools
     - ibex-lib >=2.3.0
+    - cmake >=2.8.12
 
   run:
     - python
