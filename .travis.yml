@@ -1,5 +1,5 @@
 sudo: false
-language: objective-c
+language: cpp
 addons:
   apt:
     sources:
@@ -19,34 +19,28 @@ matrix:
   include:
   - os: osx
     env: CONDA=3.5
-  - os: osx
-    env: CONDA=3.4
-  - os: osx
-    env: CONDA=2.7
   - os: linux
     env: CONDA=3.5
     compiler: gcc-4.8
-  - os: linux
-    env: CONDA=3.4
-    compiler: gcc-4.8
-  - os: linux
-    env: CONDA=2.7
-    compiler: gcc-4.8
+  # - os: osx
+  #   env: CONDA=3.4
+  # - os: osx
+  #   env: CONDA=2.7
+  # - os: linux
+  #   env: CONDA=3.4
+  #   compiler: gcc-4.8
+  # - os: linux
+  #   env: CONDA=2.7
+  #   compiler: gcc-4.8
 
 script:
+- export BINSTAR_TOKEN=${ANACONDA_TOKEN}
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
     echo "Creating feedstocks from the recipe(s) (this simply lints the recipe if this isn't a merged commit to master).";
     source ./.CI/create_feedstocks;
   elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
     echo "Building all recipes.";
-    source ./.CI/build_all;
     export CC=gcc-4.9 CXX=g++-4.9 ;
+    source ./.CI/build_all;
   fi
-- conda create --yes -q -n test-environment python=$CONDA
-- source activate test-environment
-- conda config --add channels benensta
-- conda config --add channels anaconda
-- export BINSTAR_TOKEN=${ANACONDA_TOKEN}
-# - conda-build-all ./recipes --matrix-condition "python >=2.7,<3|>=3.4" --inspect-channels benensta --upload-channels benensta
-- conda build --token ${ANACONDA_TOKEN} recipes/pyibex --
