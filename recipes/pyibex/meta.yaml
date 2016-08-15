@@ -3,6 +3,11 @@ package:
   version: "1.5.0a10"
 
 source:
+  # url : file://Users/bendesch/programmation/pyibex.zip
+  # url: https://github.com/benEnsta/pyIbex/archive/pre_v1.5.zip
+  # patches:
+    # - fix_setup_install.patch
+  # path: ../../../pyibex/
   git_rev: pre_v1.5
   git_url: https://github.com/benEnsta/pyIbex
   # fn: pyibex-1.5.0a8.tar.gz
@@ -18,10 +23,9 @@ source:
    # - fix.patch
 build:
   script_env:
-    - CPP
     - CC
     - CXX
-  number: 4
+  number: 6
 # build:
   # noarch_python: True
   # preserve_egg_dir: True
@@ -41,7 +45,7 @@ build:
 requirements:
   build:
     - python
-    - setuptools
+    # - setuptools >=23.0.0
     - ibex-lib >=2.3.0
     - cmake >=2.8.12
 
@@ -52,11 +56,13 @@ test:
   # Python imports
   imports:
     - pyibex
-    - pyibex.examples
-    - pyibex.geometry
-    - pyibex.polar
+  #   - pyibex.examples
+  #   - pyibex.geometry
+  #   - pyibex.polar
 
   commands:
+    - conda list
+    - echo $(pwd)
     - python -m unittest discover -v pyibex.tests
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.

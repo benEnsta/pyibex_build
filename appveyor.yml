@@ -37,5 +37,5 @@ install:
 build_script:
 - ps: |
     if ($env:CONDA) {
-      conda build --debug --token "$env:conda_token" recipes/pyibex --
+      conda build --token "$env:conda_token" recipes/pyibex --
     }

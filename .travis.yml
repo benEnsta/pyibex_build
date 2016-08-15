@@ -1,5 +1,5 @@
 sudo: false
-language: cpp
+language: objective-c
 addons:
   apt:
     sources:
@@ -17,9 +17,9 @@ env:
 matrix:
   include:
   - os: osx
-    osx_image: xcode7.3
-    env: CONDA=3.5 CPP=14
-    compiler: clang
+    #osx_image: xcode7.3
+    env: CONDA=3.5
+    #compiler: gcc
   # - os: linux
   #   env: CONDA=3.5 CPP=11
   #   compiler: gcc-4.8
@@ -35,9 +35,12 @@ script:
   elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
     echo "Building all recipes.";
     source ./.CI/build_all;
+    export CC=gcc-4.9 CXX=g++-4.9 ;
   fi
 - conda create --yes -q -n test-environment python=$CONDA
 - source activate test-environment
 - conda config --add channels benensta
 - conda config --add channels anaconda
-- conda build --debug --token ${ANACONDA_TOKEN} recipes/pyibex --
+- export BINSTAR_TOKEN=${ANACONDA_TOKEN}
+# - conda-build-all ./recipes --matrix-condition "python >=2.7,<3|>=3.4" --inspect-channels benensta --upload-channels benensta
+- conda build --token ${ANACONDA_TOKEN} recipes/pyibex --
