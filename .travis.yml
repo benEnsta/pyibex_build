@@ -14,18 +14,24 @@ env:
   global:
   # - secure: kLlW/eFYXyFuxKew0fcE22A2+iaFtBI29wYDCPcAc+xHz8zB2XptVzEP2atH5913nUwKOBCKy7LJM5xcYOi1512HSqUG+DOWZXeQf8fqlVMmrgGa3d5Ck+RirY/kt+jpUBIEH6johlnvphPi3v0iWshZahfXysD+dcikpbVCqc3RU7xHV5dCTGZSG/0UE0rZXh2pV5sfs0JRqpNvGWBQRUu0wv32C6m0PLXeqBK/PTQAB9qzLOKkMWPlx6gaTC8pYtGCq8UWhWC2wMXljgDRdLh9MnTzt9BWIPTYV0xZHkf+Qq8i+m84vM7/Oiq4ZtBuKa+oDf/Wz5uHa3cwiyyph5n2CRTKaAxFJ8NrP9/WEeyGrzlXTpYL8bXzS8T4FTdqnGFf9XGOTcfg85r8LM3bJ/U2MkolRiUgFJF1VnnsagxY9ioyhsGRRkxHN0hbkPJ5IRcCBK5vmo+Koi0/uJIBD4ZcjI/w0qhAYuph6wNlJuOo2sYVM6CdY0oI1dv9emGXD5r+AUyf1RLCq8WGklauRJMVAlxyfxn7VWg/18lD5A8cNYrf4XelDr0l0n0ii5VeurUHewcn93opkES1jvgBLgZ+Inmcm3rEBD/FygLA8vhHSkkOC2SACByFlcYagoEOeblx9O1PKN3WRZUSpDF9tqyf8KKOz/SqS5HXQTWLPLQ=
   - secure: OlrHCKW0otKKziRcXMC1WogiMrHAgheVwH/UmRYrRHo4Gn0yGOXyvZXmZx5vrrOxOnYz/6zRcv0QsiGPXu5hPea8Fi0O919Ebho+rVLyLeuYDM5KxcZdUjMJ6OlcmxeTbQzrf4m2tOLtsOk+gP2fMKfr1cZ12LUiywnob86k6mwEv8A1tCxPoyz/TW9xU6CCcGPdaRy1I0WR8fP/yV6ro+e2ykbQf60Cg3Vf2vh+GJzOSP4d58/KttBi4D7UFF2oc/CmxEk88RKNnNQHxA1VuVy0s0QAy3T3Wwq/66eSr1mOGhFPjc/uAVelzngIvfZxkN1eOuiU/4rZ+miyCib3g9HljpqhxXrEV5H6Ws+Dr9E0hnUuSo/AA14Qv94D3TgLjC8EqmaDETU60LXzEnl5c5DeHyKBn1yOrP4JqgQAfeJzj7/kc2ket2hdGHuZ5Lv+xZ5hRssyfP2NTf6hMYGOXOq+CGg5eIBqedUXXmEshgbYOZvnMwugzn820ysq/bM2gHLbkS0n+ox39xvqhku+ZUFMPsBm1dXNd+uoVHzGu2c+6axrVvQ0ME1q5ytw8yRRzTIQSn2+6xbE/fpB5WxT/17+YK8q236Pus35o0BwK5JcRZicnem1UxOCrCFRRAplR8xguAAQfTtFUBT0QLiv0mZDN/obgOggQpT7p83Yg+s=
+
 matrix:
   include:
   - os: osx
-    #osx_image: xcode7.3
     env: CONDA=3.5
-    #compiler: gcc
-  # - os: linux
-  #   env: CONDA=3.5 CPP=11
-  #   compiler: gcc-4.8
-  # - os: linux
-  #   env: CONDA=3.4
-  #   compiler: gcc-4.8
+  - os: osx
+    env: CONDA=3.4
+  - os: osx
+    env: CONDA=2.7
+  - os: linux
+    env: CONDA=3.5
+    compiler: gcc-4.8
+  - os: linux
+    env: CONDA=3.4
+    compiler: gcc-4.8
+  - os: linux
+    env: CONDA=2.7
+    compiler: gcc-4.8
 
 script:
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX=g++-4.8 CC=gcc-4.8; fi

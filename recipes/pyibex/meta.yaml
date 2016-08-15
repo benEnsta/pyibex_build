@@ -25,7 +25,9 @@ build:
   script_env:
     - CC
     - CXX
-  number: 6
+  number: 7
+  features:
+    - vc14    [win]
 # build:
   # noarch_python: True
   # preserve_egg_dir: True
