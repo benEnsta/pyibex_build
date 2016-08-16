@@ -41,6 +41,6 @@ script:
     source ./.CI/create_feedstocks;
   elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
     echo "Building all recipes.";
-    export CC=gcc-4.9 CXX=g++-4.9 ;
+    export CC=gcc-4.8 CXX=g++-4.8 ;
     source ./.CI/build_all;
   fi

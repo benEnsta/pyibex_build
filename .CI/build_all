@@ -7,10 +7,10 @@ export CONDA_NPY=19
 # We only build if we aren't a merged PR (that is, only build for PRs).
 
 # Remove homebrew.
-brew remove --force $(brew list)
-brew cleanup -s
-rm -rf $(brew --cache)
-brew install gcc
+# brew remove --force $(brew list)
+# brew cleanup -s
+# rm -rf $(brew --cache)
+# brew install gcc
 
 # Install and configure conda environment.
 curl -L -O https://raw.githubusercontent.com/pelson/Obvious-CI/master/bootstrap-obvious-ci-and-miniconda.py
