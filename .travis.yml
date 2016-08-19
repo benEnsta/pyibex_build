@@ -17,8 +17,8 @@ env:
 
 matrix:
   include:
-  - os: osx
-    env: CONDA=3.5
+  # - os: osx
+    # env: CONDA=3.5
   - os: linux
     env: CONDA=3.5
     compiler: gcc-4.8
