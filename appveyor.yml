@@ -31,11 +31,18 @@ install:
       conda update -q conda
       conda install -q conda-build
       conda install -q anaconda-client
+      conda install -q conda-build-all
       conda config --add channels benensta
 
     }
 build_script:
 - ps: |
     if ($env:CONDA) {
-      conda build --token "$env:conda_token" recipes/pyibex --
+      Try {
+        conda-build-all ./recipes --inspect-channels benensta --upload-channels benensta
+      }Catch [Management.Automation.RemoteException] {
+        $Time=Get-Date
+      }Finally{
+        $Time=Get-Date
+      }
     }

@@ -1,6 +1,6 @@
 #!/bin/bash
 # mkdir -p pybind11/include/pybind11
-# curl -L https://raw.github.com/pybind/pybind11/blob/master/include/pybind11/attr.h i -O 
+# curl -L https://raw.github.com/pybind/pybind11/blob/master/include/pybind11/attr.h i -O
 # ls ../
 # ls .
 
@@ -15,7 +15,7 @@ git submodule update
 mkdir -p build
 # rm -fr build/*
 cd build
-# echo $(pwd)
+echo $(pwd)
 # rm ../CMakeCache.txt
 # rm -fr ../CMakeFiles
 
