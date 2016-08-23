@@ -15,7 +15,7 @@ git submodule update
 mkdir -p build
 # rm -fr build/*
 cd build
-echo $(pwd)
+# echo $(pwd)
 # rm ../CMakeCache.txt
 # rm -fr ../CMakeFiles
 
