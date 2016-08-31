@@ -1,16 +1,16 @@
 package:
   name: pyibex
-  version: "1.5.0a10"
+  version: "1.5.0rc1"
 
 source:
-  git_rev: pre_v1.5
+  git_rev: master
   git_url: https://github.com/benEnsta/pyIbex
 
 build:
 #  script_env:
 #    - CC
 #    - CXX
-  number: 9 [not osx]
+  number: 1 [not osx]
   number: 1 [osx]
   features:
     - vc14    [win]
