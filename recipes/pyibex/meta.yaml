@@ -1,6 +1,6 @@
 package:
   name: pyibex
-  version: "1.5.0rc1"
+  version: "1.5.0"
 
 source:
   git_rev: master
