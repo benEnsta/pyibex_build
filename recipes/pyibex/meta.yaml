@@ -1,6 +1,6 @@
 package:
   name: pyibex
-  version: "1.5.0"
+  version: "1.5.1"
 
 source:
   git_rev: master
@@ -10,46 +10,26 @@ build:
 #  script_env:
 #    - CC
 #    - CXX
-  number: 1 [not osx]
-  number: 1 [osx]
-  features:
-    - vc14    [win]
-# build:
-  # noarch_python: True
-  # preserve_egg_dir: True
-  # entry_points:
-    # Put any entry points (scripts to be generated automatically) here. The
-    # syntax is module:function.  For example
-    #
-    # - pyibex = pyibex:main
-    #
-    # Would create an entry point called pyibex that calls pyibex.main()
-
-
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  # number: 1
+  number: 0
 
 requirements:
   build:
     - python
-    # - setuptools >=23.0.0
-    - ibex-lib >=2.3.0
+    - ibex-lib >=2.3.2
     - cmake >=2.8.12
     - gcc >=4.8.5 [osx]
 
   run:
     - python
     - gcc >=4.8.5 [osx]
+    - vs2015_runtime  [win]
 
 
 test:
   # Python imports
   imports:
     - pyibex
-  #   - pyibex.examples
-  #   - pyibex.geometry
-  #   - pyibex.polar
+
 
   commands:
     - conda list
@@ -75,7 +55,7 @@ about:
 extra:
   recipe-maintainers:
     # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
-    - BenEnsta
+    - BenEnsta <ben.ensta@gmail.com>
 # See
 # http://docs.continuum.io/conda/build.html for
 # more information about meta.yaml
