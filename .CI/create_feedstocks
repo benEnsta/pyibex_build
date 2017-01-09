@@ -8,8 +8,8 @@ python bootstrap-obvious-ci-and-miniconda.py ~/miniconda x64 3 --without-obvci &
 conda config --set show_channel_urls true
 conda config --add channels conda-forge
 conda config --add channels benensta;
-conda install --yes --quiet conda-build
 conda install --yes --quiet anaconda-client
+conda install --yes --quiet conda-build=2.0.1
 conda install --yes --quiet conda-build-all
 
 rm -rf ./recipes/example
