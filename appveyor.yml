@@ -30,8 +30,7 @@ install:
       conda config --add channels conda-forge
       conda update -q conda
       conda install -q anaconda-client
-      conda install -q conda-build=2.0.1
-      conda install -q conda-build-all
+      conda install -q conda-build
       conda config --add channels benensta
 
     }
@@ -39,7 +38,7 @@ build_script:
 - ps: |
     if ($env:CONDA) {
       Try {
-        conda-build-all ./recipes --matrix-conditions "python <3|>=3.4" --inspect-channels benensta --upload-channels benensta
+        conda-build ./recipes/pyibex
       }Catch [Management.Automation.RemoteException] {
         $Time=Get-Date
       }Finally{
