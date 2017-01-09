@@ -7,9 +7,9 @@ source:
   git_url: https://github.com/benEnsta/pyIbex
 
 build:
-#  script_env:
-#    - CC
-#    - CXX
+  script_env:
+    - CC
+    - CXX
   number: 1
 
 requirements:
@@ -27,8 +27,8 @@ requirements:
 
 test:
   # Python imports
-  imports:
-    - pyibex
+  # imports:
+    # - pyibex
 
 
   commands:
