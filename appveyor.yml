@@ -7,8 +7,8 @@ environment:
   # global:
     # DISTUTILS_USE_SDK: 1
     # MSSdk: 1
-  conda_token:
-    secure: JHoNjSJ/qEnmDBxTUrryRM/hu5ajQSboycQysdUjVnX8ta/vgvc8ihEnn2zmhPWy
+  BINSTAR_TOKEN:
+    secure: +jbjjU3RNqqjwIJde8MtkEcqacibU5NtvOkpCScU+2uR8l2akHOhjkhBmPYgOl36
 
 
   matrix:
@@ -39,7 +39,7 @@ build_script:
 - ps: |
     if ($env:CONDA) {
       Try {
-        conda-build-all ./recipes --matrix-conditions "python <3|>=3.4" --inspect-channels benensta --upload-channels benensta
+        conda-build-all ./recipes --matrix-conditions "python >=2.7,<3|>=3.4" --inspect-channels benensta --upload-channels benensta
       }Catch [Management.Automation.RemoteException] {
         $Time=Get-Date
       }Finally{
