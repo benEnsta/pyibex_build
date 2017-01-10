@@ -26,7 +26,7 @@ matrix:
       compiler: gcc-4.8
     - os: osx
       env: CONDA=3.4
-      compiler: clang
+      compiler: gcc
   # - os: osx
   #   env: CONDA=2.7
   # - os: linux
@@ -43,6 +43,7 @@ script:
     echo "Creating feedstocks from the recipe(s) (this simply lints the recipe if this isn't a merged commit to master).";
     source ./.CI/create_feedstocks;
   elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    export CXX=g++-4.8 CC=gcc-4.8;
     echo "Building all recipes.";
     source ./.CI/build_all;
   fi
