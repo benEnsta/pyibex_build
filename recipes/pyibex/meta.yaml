@@ -10,7 +10,7 @@ build:
   script_env:
     - CC
     - CXX
-  number: 1
+  number: 2
 
 requirements:
   build:
