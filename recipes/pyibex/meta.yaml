@@ -3,14 +3,14 @@ package:
   version: "1.6.0"
 
 source:
-  git_rev: pre_v1.6
+  git_rev: master
   git_url: https://github.com/benEnsta/pyIbex
 
 build:
   script_env:
     - CC
     - CXX
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -32,8 +32,6 @@ test:
 
 
   commands:
-    - conda list
-    - echo $(pwd)
     - python -m unittest discover -v pyibex.tests
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.
