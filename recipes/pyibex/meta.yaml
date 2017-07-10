@@ -1,6 +1,6 @@
 package:
   name: pyibex
-  version: "1.6.0"
+  version: "1.6.1"
 
 source:
   git_rev: master
@@ -10,7 +10,7 @@ build:
   script_env:
     - CC
     - CXX
-  number: 3
+  number: 0
 
 requirements:
   build:
