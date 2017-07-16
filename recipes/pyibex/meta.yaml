@@ -28,12 +28,12 @@ requirements:
 
 test:
   # Python imports
-  # imports:
-    # - pyibex
+  imports:
+    - pyibex
 
 
-  commands:
-    - python -m unittest discover -vv pyibex.tests
+  # commands:
+    # - python -m unittest discover -vv pyibex.tests
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.
 
