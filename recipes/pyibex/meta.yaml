@@ -1,16 +1,16 @@
 package:
   name: pyibex
-  version: "1.6.2"
+  version: "1.6.3a"
 
 source:
-  git_rev: master
+  git_rev: pre_v1.6.3
   git_url: https://github.com/benEnsta/pyIbex
 
 build:
   script_env:
     - CC
     - CXX
-  number: 1
+  number: 0
 
 requirements:
   build:
